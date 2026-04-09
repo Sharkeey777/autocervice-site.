@@ -905,9 +905,65 @@
     margin-top: var(--sp-2);
 }
 
+.s-header--simple .s-header__nav,
+.s-header--simple .s-header__actions,
+.s-header--simple .s-header__phone,
+.s-header--simple .s-header__cta {
+    display: none;
+}
+
+.s-legal-document {
+    padding: clamp(32px, 6vw, 56px);
+}
+
+.s-legal-document__eyebrow {
+    margin: 0;
+    color: var(--color-primary);
+    font-size: var(--text-small);
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+.s-legal-document h1 {
+    margin-top: var(--sp-4);
+    font-size: clamp(2rem, 4vw, 3.5rem);
+    line-height: 1.08;
+    text-wrap: pretty;
+}
+
+.s-legal-document__meta {
+    margin-top: var(--sp-5);
+    max-width: none;
+    color: var(--color-ink-secondary);
+}
+
+.s-legal-document__section {
+    margin-top: var(--sp-8);
+}
+
+.s-legal-document__section h2 {
+    margin-bottom: var(--sp-3);
+    font-size: clamp(1.25rem, 2vw, 1.6rem);
+}
+
+.s-legal-document__section p {
+    max-width: none;
+    color: var(--color-ink-secondary);
+    line-height: 1.7;
+}
+
 @media (max-width: 768px) {
     .s-legal__summary {
         grid-template-columns: 1fr;
+    }
+
+    .s-legal-document {
+        padding: 24px;
+    }
+
+    .s-legal-document h1 {
+        font-size: clamp(1.75rem, 8vw, 2.5rem);
     }
 }
 
