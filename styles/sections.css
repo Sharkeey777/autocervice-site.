@@ -137,19 +137,22 @@
 
 @media (max-width: 768px) {
     .s-header__inner {
-        min-height: auto;
-        padding-block: 12px;
-        flex-wrap: wrap;
+        min-height: 72px;
+        padding-block: 10px;
+        flex-wrap: nowrap;
         align-items: center;
-        row-gap: 10px;
+        justify-content: space-between;
+        row-gap: 0;
     }
 
     .s-header__brand {
-        width: 100%;
-        gap: 12px;
+        flex: 1 1 auto;
+        min-width: 0;
+        width: auto;
+        gap: 10px;
     }
 
-    .s-header__logo { width: 92px; }
+    .s-header__logo { width: 82px; }
     .s-header__company {
         font-size: 12px;
         line-height: 1.15;
@@ -159,25 +162,26 @@
     .s-header__nav { display: none; }
 
     .s-header__actions {
-        display: grid;
-        width: 100%;
-        grid-template-columns: 1fr;
-        gap: 10px;
+        display: inline-flex;
+        flex: 0 0 auto;
+        width: auto;
+        grid-template-columns: none;
+        gap: 0;
     }
 
     .s-header__phone {
-        justify-content: center;
-        min-height: 44px;
-        font-size: 0.95rem;
-    }
-
-    .s-header__actions .s-header__cta:first-of-type {
         display: none;
     }
 
+    .s-header__actions .s-header__cta:first-of-type {
+        display: inline-flex;
+        width: auto;
+        min-height: 42px;
+        padding-inline: 18px;
+    }
+
     .s-header__actions .s-header__cta:last-of-type {
-        width: 100%;
-        min-height: 44px;
+        display: none;
     }
 
     .s-hero {
