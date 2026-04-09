@@ -4,7 +4,6 @@ document.documentElement.classList.add('has-js');
 
 document.addEventListener('DOMContentLoaded', () => {
     initHeader();
-    initMobileMenu();
     initFAQ();
     initReveal();
     initSmoothScroll();
@@ -24,37 +23,6 @@ function initHeader() {
 
     window.addEventListener('scroll', onScroll, { passive: true });
     onScroll();
-}
-
-function initMobileMenu() {
-    const button = document.querySelector('.js-menu-toggle');
-    const nav = document.querySelector('.s-header__mobile-nav');
-    if (!button || !nav) return;
-
-    const setMenuState = (isOpen) => {
-        nav.classList.toggle('is-open', isOpen);
-        button.classList.toggle('is-active', isOpen);
-        button.setAttribute('aria-expanded', String(isOpen));
-        nav.setAttribute('aria-hidden', String(!isOpen));
-        document.body.style.overflow = isOpen ? 'hidden' : '';
-    };
-
-    nav.setAttribute('aria-hidden', 'true');
-
-    button.addEventListener('click', () => {
-        setMenuState(!nav.classList.contains('is-open'));
-    });
-
-    nav.querySelectorAll('a').forEach((link) => {
-        link.addEventListener('click', () => setMenuState(false));
-    });
-
-    document.addEventListener('keydown', (event) => {
-        if (event.key === 'Escape' && nav.classList.contains('is-open')) {
-            setMenuState(false);
-            button.focus();
-        }
-    });
 }
 
 function initFAQ() {
@@ -189,20 +157,8 @@ function initContactModal() {
 
     let lastFocusedElement = null;
 
-    const closeMobileMenu = () => {
-        const button = document.querySelector('.js-menu-toggle');
-        const nav = document.querySelector('.s-header__mobile-nav');
-        if (!button || !nav || !nav.classList.contains('is-open')) return;
-
-        nav.classList.remove('is-open');
-        button.classList.remove('is-active');
-        button.setAttribute('aria-expanded', 'false');
-        nav.setAttribute('aria-hidden', 'true');
-    };
-
     const openModal = () => {
         lastFocusedElement = document.activeElement;
-        closeMobileMenu();
 
         const talkWidget = document.querySelector('.js-talk-widget');
         if (talkWidget) {
@@ -211,12 +167,14 @@ function initContactModal() {
         }
 
         modal.hidden = false;
+        document.body.classList.add('has-contact-modal');
         document.body.style.overflow = 'hidden';
         window.setTimeout(() => dialog.focus(), 0);
     };
 
     const closeModal = () => {
         modal.hidden = true;
+        document.body.classList.remove('has-contact-modal');
         document.body.style.overflow = '';
         if (lastFocusedElement instanceof HTMLElement) {
             lastFocusedElement.focus();
@@ -254,6 +212,7 @@ function initTalkWidget() {
         window.clearTimeout(showTimer);
         widget.hidden = true;
         document.body.classList.remove('has-talk-widget');
+        document.body.style.overflow = '';
     };
 
     const showWidget = () => {
@@ -266,6 +225,7 @@ function initTalkWidget() {
 
         widget.hidden = false;
         document.body.classList.add('has-talk-widget');
+        document.body.style.overflow = 'hidden';
     };
 
     showTimer = window.setTimeout(showWidget, delayBeforeShow);
@@ -288,6 +248,7 @@ function initCookieNotice() {
     const showDelay = 5000;
     let showTimer = window.setTimeout(() => {
         notice.hidden = false;
+        document.body.classList.add('has-cookie-notice');
         window.requestAnimationFrame(() => {
             notice.classList.add('is-visible');
         });
@@ -296,6 +257,7 @@ function initCookieNotice() {
     acceptButton.addEventListener('click', () => {
         window.clearTimeout(showTimer);
         notice.classList.remove('is-visible');
+        document.body.classList.remove('has-cookie-notice');
         window.setTimeout(() => {
             notice.hidden = true;
         }, 260);
