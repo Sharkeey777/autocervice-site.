@@ -1155,7 +1155,7 @@
 }
 
 /* ══════════════════════════════════════════════════════
-   s-sticky-cta (мобильная фиксированная кнопка)
+   floating contact
    ══════════════════════════════════════════════════════ */
 .s-floating-contact {
     position: fixed;
@@ -1647,26 +1647,6 @@
     }
 }
 
-.s-sticky-cta {
-    display: none;
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    z-index: var(--z-sticky);
-    padding: var(--sp-3) var(--container-padding) calc(var(--sp-3) + env(safe-area-inset-bottom));
-    background: rgba(255, 255, 255, 0.95);
-    backdrop-filter: blur(12px);
-    border-top: 1px solid var(--color-border);
-    box-shadow: 0 -4px 16px rgba(0,0,0,0.06);
-}
-
-@media (max-width: 768px) {
-    .s-sticky-cta {
-        display: block;
-    }
-}
-
 .s-cookie-notice[hidden] {
     display: none;
 }
@@ -1701,9 +1681,7 @@
 }
 
 body.has-contact-modal .s-floating-contact,
-body.has-talk-widget .s-floating-contact,
-body.has-contact-modal .s-sticky-cta,
-body.has-talk-widget .s-sticky-cta {
+body.has-talk-widget .s-floating-contact {
     opacity: 0;
     pointer-events: none;
 }
