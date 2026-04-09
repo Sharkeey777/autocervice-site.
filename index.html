@@ -353,15 +353,24 @@
         <div id="contact-dialog" class="s-contact-modal__dialog" role="dialog" aria-modal="true" aria-labelledby="contact-dialog-title">
             <button class="s-contact-modal__close js-contact-close" type="button" aria-label="Закрыть окно">×</button>
             <h2 id="contact-dialog-title">Связаться</h2>
+            <p class="s-contact-modal__lead">Выберите удобный способ связи.</p>
             <div class="s-contact-modal__grid">
                 <a class="s-contact-modal__item s-contact-modal__item--phone" href="tel:+79896111376" aria-label="Позвонить по номеру +7 989 611 13 76">
                     <span class="s-contact-modal__item-icon" aria-hidden="true">
                         <img src="images/icon-phone-call.png" width="512" height="512" alt="">
                     </span>
-                    <strong>+7 (989) 611-13-76</strong>
+                    <span class="s-contact-modal__item-body">
+                        <span class="s-contact-modal__item-label">Быстрый звонок</span>
+                        <strong>+7 (989) 611-13-76</strong>
+                    </span>
+                    <span class="s-contact-modal__item-arrow" aria-hidden="true">→</span>
                 </a>
                 <a class="s-contact-modal__item s-contact-modal__item--request" href="#map">
-                    <strong>Как нас найти</strong>
+                    <span class="s-contact-modal__item-body">
+                        <span class="s-contact-modal__item-label">Маршрут и адрес</span>
+                        <strong>Как нас найти</strong>
+                    </span>
+                    <span class="s-contact-modal__item-arrow" aria-hidden="true">→</span>
                 </a>
             </div>
         </div>
