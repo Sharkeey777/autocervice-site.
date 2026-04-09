@@ -1,0 +1,109 @@
+/* ============================================================
+   LAYOUT — Container, Grid, Section Rhythm
+   ============================================================ */
+
+/* ── Контейнер ── */
+.l-container {
+    width: min(var(--container-max), calc(100% - var(--container-padding) * 2));
+    margin-inline: auto;
+}
+
+.l-container--narrow {
+    width: min(var(--container-narrow), calc(100% - var(--container-padding) * 2));
+    margin-inline: auto;
+}
+
+/* ── Grid system ── */
+.l-grid {
+    display: grid;
+    gap: var(--sp-6);
+}
+
+.l-grid--2 { grid-template-columns: repeat(2, 1fr); }
+.l-grid--3 { grid-template-columns: repeat(3, 1fr); }
+.l-grid--4 { grid-template-columns: repeat(4, 1fr); }
+
+.l-grid--2-1 { grid-template-columns: 2fr 1fr; }
+.l-grid--1-2 { grid-template-columns: 1fr 2fr; }
+.l-grid--6-4 { grid-template-columns: 1.1fr 0.9fr; }
+
+/* ── Section rhythm ── */
+.l-section {
+    padding-block: var(--section-py);
+}
+
+.l-section--tight {
+    padding-block: clamp(32px, 5vw, 56px);
+}
+
+/* ── Section head (заголовок + подзаголовок каждой секции) ── */
+.l-section__head {
+    margin-bottom: var(--sp-10);
+}
+
+.l-section__head--center {
+    text-align: center;
+}
+
+/* ── Секционные фоны ── */
+.l-section--dark {
+    background: linear-gradient(180deg, var(--color-dark) 0%, #12141a 100%);
+    color: #ffffff;
+}
+
+.l-section--dark .l-section__subtitle {
+    color: #b0b6c3;
+}
+
+.l-section--soft {
+    background: var(--color-bg-warm);
+}
+
+.l-section--surface {
+    background: var(--color-surface);
+}
+
+/* ── Секционные текстовые элементы ── */
+.l-section__eyebrow {
+    display: inline-block;
+    margin-bottom: var(--sp-3);
+    font-size: var(--text-caption);
+    font-weight: 700;
+    letter-spacing: var(--ls-caps);
+    text-transform: uppercase;
+    color: var(--color-primary);
+}
+
+.l-section__title {
+    margin: 0;
+}
+
+.l-section__subtitle {
+    margin-top: var(--sp-3);
+    max-width: 60ch;
+    font-size: var(--text-body-lg);
+    font-weight: 400;
+    color: var(--color-ink-secondary);
+    line-height: var(--lh-body);
+}
+
+.l-section__head--center .l-section__subtitle {
+    margin-inline: auto;
+}
+
+/* ── Responsive grid ── */
+@media (max-width: 1024px) {
+    .l-grid--4 { grid-template-columns: repeat(2, 1fr); }
+    .l-grid--6-4 { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 768px) {
+    .l-grid--3 { grid-template-columns: 1fr; }
+    .l-grid--2-1,
+    .l-grid--1-2 { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 560px) {
+    .l-grid--2 { grid-template-columns: 1fr; }
+    .l-grid--4 { grid-template-columns: 1fr; }
+}

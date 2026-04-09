@@ -1,0 +1,17 @@
+{
+  "name": "ДАЛЕ ЮГ Автосервис",
+  "short_name": "ДАЛЕ ЮГ",
+  "start_url": ".",
+  "display": "standalone",
+  "background_color": "#e9edf3",
+  "theme_color": "#0f1218",
+  "lang": "ru",
+  "icons": [
+    {
+      "src": "assets/images/logo-mark.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    }
+  ]
+}

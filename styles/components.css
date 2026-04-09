@@ -1,0 +1,583 @@
+/* ============================================================
+   COMPONENTS — Reusable UI Components
+   ============================================================ */
+
+/* ══════════════════════════════════════════════════════
+   c-button
+   ══════════════════════════════════════════════════════ */
+.c-button {
+    position: relative;
+    overflow: hidden;
+    isolation: isolate;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--sp-2);
+    min-height: 52px;
+    padding: 14px 28px;
+    border: 0;
+    border-radius: var(--radius-full);
+    font-family: var(--font-heading);
+    font-size: var(--text-body);
+    font-weight: 700;
+    line-height: 1;
+    white-space: nowrap;
+    cursor: pointer;
+    transition: transform var(--transition),
+                box-shadow var(--transition),
+                background var(--transition),
+                border-color var(--transition),
+                color var(--transition);
+}
+
+.c-button::after {
+    content: "";
+    position: absolute;
+    inset: -40% auto -40% -70%;
+    z-index: 1;
+    width: 48%;
+    transform: skewX(-18deg) translateX(0);
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.34), transparent);
+    opacity: 0;
+    pointer-events: none;
+    transition: transform 720ms var(--ease), opacity var(--transition);
+}
+
+.c-button:hover {
+    transform: translateY(-3px);
+}
+
+.c-button:hover::after {
+    transform: skewX(-18deg) translateX(360%);
+    opacity: 1;
+}
+
+.c-button:active {
+    transform: translateY(0);
+}
+
+/* Варианты */
+.c-button--primary {
+    background: linear-gradient(135deg, var(--color-accent) 0%, var(--color-primary) 52%, var(--color-primary-dark) 100%);
+    color: var(--color-accent-ink);
+    box-shadow: 0 8px 22px rgba(184, 31, 36, 0.3);
+}
+
+.c-button--primary:hover {
+    background: linear-gradient(135deg, var(--color-primary-light) 0%, var(--color-primary) 44%, var(--color-primary-dark) 100%);
+    box-shadow: 0 14px 34px rgba(184, 31, 36, 0.4);
+    color: #fff;
+}
+
+.c-button--secondary {
+    background: linear-gradient(180deg, #ffffff 0%, var(--color-surface-soft) 100%);
+    color: var(--color-ink);
+    border: 1px solid var(--color-border);
+    box-shadow: var(--shadow-sm);
+}
+
+.c-button--secondary:hover {
+    border-color: var(--color-primary);
+    color: var(--color-primary);
+    box-shadow: var(--shadow-md);
+}
+
+.c-button--ghost {
+    background: transparent;
+    color: var(--color-accent-ink);
+    border: 2px solid rgba(255, 255, 255, 0.3);
+}
+
+.c-button--ghost:hover {
+    background: rgba(255,255,255,0.1);
+    border-color: rgba(255,255,255,0.6);
+    color: #fff;
+}
+
+.c-button--sm {
+    min-height: 42px;
+    padding: 10px 20px;
+    font-size: var(--text-small);
+}
+
+.c-button--lg {
+    min-height: 58px;
+    padding: 16px 36px;
+    font-size: var(--text-body-lg);
+}
+
+.c-button--block {
+    width: 100%;
+}
+
+@media (max-width: 560px) {
+    .c-button {
+        width: 100%;
+        white-space: normal;
+        text-align: center;
+    }
+}
+
+/* ══════════════════════════════════════════════════════
+   c-card — универсальная карточка
+   ══════════════════════════════════════════════════════ */
+.c-card {
+    position: relative;
+    overflow: hidden;
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    padding: var(--sp-6);
+    box-shadow: var(--shadow-sm);
+    transition: transform var(--transition),
+                box-shadow var(--transition),
+                border-color var(--transition);
+}
+
+.c-card::before {
+    content: "";
+    position: absolute;
+    inset: 0 0 auto;
+    height: 3px;
+    transform: scaleX(0);
+    transform-origin: left;
+    background: linear-gradient(90deg, var(--color-accent), var(--color-primary-dark));
+    transition: transform var(--transition-slow);
+}
+
+.c-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-md);
+    border-color: rgba(184, 31, 36, 0.18);
+}
+
+.c-card:hover::before {
+    transform: scaleX(1);
+}
+
+.c-card__media {
+    display: block;
+    width: 100%;
+    aspect-ratio: 16 / 10;
+    object-fit: cover;
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--color-border-light);
+    margin-bottom: var(--sp-5);
+    background: var(--color-surface-muted);
+    filter: saturate(0.94) contrast(1.04);
+    transition: transform var(--transition-slow), filter var(--transition);
+}
+
+.c-card:hover .c-card__media {
+    transform: scale(1.025);
+    filter: saturate(1.04) contrast(1.06);
+}
+
+.c-card__icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 56px;
+    height: 56px;
+    border-radius: var(--radius-sm);
+    background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
+    color: #fff;
+    font-size: 1.5rem;
+    margin-bottom: var(--sp-4);
+    box-shadow: 0 6px 16px rgba(184, 31, 36, 0.24);
+    transition: transform var(--transition-slow), box-shadow var(--transition);
+}
+
+.c-card:hover .c-card__icon {
+    transform: translateY(-2px) rotate(-2deg);
+    box-shadow: 0 12px 28px rgba(184, 31, 36, 0.26);
+}
+
+.c-card__title {
+    font-size: var(--text-h4);
+    font-weight: 700;
+    margin-bottom: var(--sp-2);
+    color: var(--color-ink);
+}
+
+.c-card__text {
+    font-size: var(--text-small);
+    color: var(--color-ink-secondary);
+    line-height: var(--lh-body);
+}
+
+/* ══════════════════════════════════════════════════════
+   c-badge
+   ══════════════════════════════════════════════════════ */
+.c-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--sp-1);
+    padding: 6px 14px;
+    background: rgba(184, 31, 36, 0.08);
+    color: var(--color-primary);
+    font-size: var(--text-caption);
+    font-weight: 700;
+    letter-spacing: var(--ls-wide);
+    border-radius: var(--radius-full);
+    text-transform: uppercase;
+}
+
+.c-badge--dark {
+    background: rgba(255, 255, 255, 0.1);
+    color: rgba(255, 255, 255, 0.9);
+}
+
+/* ══════════════════════════════════════════════════════
+   c-counter (метрика / число)
+   ══════════════════════════════════════════════════════ */
+.c-counter {
+    text-align: center;
+}
+
+.c-counter__value {
+    font-family: var(--font-heading);
+    font-size: var(--text-h2);
+    font-weight: 800;
+    color: var(--color-primary);
+    line-height: 1;
+}
+
+.c-counter__label {
+    margin-top: var(--sp-2);
+    font-size: var(--text-small);
+    color: var(--color-ink-secondary);
+}
+
+/* ══════════════════════════════════════════════════════
+   c-trust-point
+   ══════════════════════════════════════════════════════ */
+/* ══════════════════════════════════════════════════════
+   c-process-step
+   ══════════════════════════════════════════════════════ */
+.c-process-step {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--sp-4);
+    padding: var(--sp-4);
+    border: 1px solid rgba(15, 18, 24, 0.08);
+    border-radius: var(--radius-sm);
+    background: rgba(255, 255, 255, 0.78);
+    box-shadow: 0 10px 28px rgba(15, 18, 24, 0.06);
+    transition: transform var(--transition), border-color var(--transition), box-shadow var(--transition);
+}
+
+.c-process-step:hover {
+    transform: translateY(-2px);
+    border-color: rgba(184, 31, 36, 0.18);
+    box-shadow: 0 16px 34px rgba(15, 18, 24, 0.1);
+}
+
+.c-process-step__num {
+    flex-shrink: 0;
+    width: 44px;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: var(--radius-full);
+    background: var(--color-primary);
+    color: #fff;
+    font-family: var(--font-heading);
+    font-weight: 800;
+    font-size: var(--text-body-lg);
+    box-shadow: 0 10px 22px rgba(184, 31, 36, 0.24);
+}
+
+.c-process-step__body {
+    padding-top: var(--sp-2);
+}
+
+.c-process-step__title {
+    font-size: var(--text-body);
+    font-weight: 700;
+    margin-bottom: var(--sp-1);
+}
+
+.c-process-step__text {
+    font-size: var(--text-small);
+    color: var(--color-ink-secondary);
+    line-height: 1.5;
+}
+
+/* ══════════════════════════════════════════════════════
+   c-faq-item
+   ══════════════════════════════════════════════════════ */
+.c-faq-item {
+    border-bottom: 1px solid var(--color-border);
+}
+
+.c-faq-item__question {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding: var(--sp-5) 0;
+    background: none;
+    border: none;
+    cursor: pointer;
+    text-align: left;
+    font-family: var(--font-heading);
+    font-size: var(--text-body-lg);
+    font-weight: 700;
+    color: var(--color-ink);
+    line-height: 1.4;
+    transition: color var(--transition);
+}
+
+.c-faq-item__question:hover {
+    color: var(--color-primary);
+}
+
+.c-faq-item__icon {
+    flex-shrink: 0;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: var(--sp-4);
+    border-radius: var(--radius-full);
+    background: var(--color-surface-muted);
+    font-size: 1.25rem;
+    font-weight: 400;
+    color: var(--color-ink-secondary);
+    transition: transform var(--transition), background var(--transition);
+}
+
+.c-faq-item.is-open .c-faq-item__icon {
+    transform: rotate(45deg);
+    background: rgba(184, 31, 36, 0.1);
+    color: var(--color-primary);
+}
+
+.c-faq-item__answer {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 350ms var(--ease), padding 350ms var(--ease);
+    padding-bottom: 0;
+}
+
+.c-faq-item.is-open .c-faq-item__answer {
+    max-height: 400px;
+    padding-bottom: var(--sp-6);
+}
+
+.c-faq-item__answer p {
+    font-size: var(--text-body);
+    color: var(--color-ink-secondary);
+    line-height: var(--lh-body);
+}
+
+/* ══════════════════════════════════════════════════════
+   c-form
+   ══════════════════════════════════════════════════════ */
+.c-form {
+    max-width: 540px;
+}
+
+.c-form.c-card:hover {
+    transform: none;
+}
+
+.c-form.is-submitting {
+    pointer-events: none;
+    opacity: 0.72;
+}
+
+.c-form__group {
+    margin-bottom: var(--sp-5);
+}
+
+.c-form__label {
+    display: block;
+    margin-bottom: var(--sp-2);
+    font-size: var(--text-small);
+    font-weight: 600;
+    color: var(--color-ink);
+}
+
+.c-form__input {
+    width: 100%;
+    min-height: 52px;
+    padding: 14px 18px;
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-sm);
+    font-size: var(--text-body);
+    color: var(--color-ink);
+    transition: border-color var(--transition), box-shadow var(--transition);
+}
+
+.c-form textarea.c-form__input {
+    min-height: 132px;
+    resize: vertical;
+}
+
+.c-form__input::placeholder {
+    color: var(--color-ink-muted);
+}
+
+.c-form__input:focus {
+    border-color: var(--color-primary);
+    box-shadow: 0 0 0 3px rgba(184, 31, 36, 0.1);
+    outline: none;
+}
+
+.c-form__input.has-error {
+    border-color: var(--color-error);
+}
+
+.c-form__input[aria-invalid="true"] {
+    border-color: var(--color-error);
+}
+
+.c-form__error {
+    display: none;
+    margin-top: var(--sp-1);
+    font-size: var(--text-caption);
+    color: var(--color-error);
+}
+
+.c-form__input.has-error ~ .c-form__error {
+    display: block;
+}
+
+.c-form__note {
+    margin-top: var(--sp-4);
+    font-size: var(--text-caption);
+    color: var(--color-ink-muted);
+    line-height: 1.5;
+}
+
+.c-form__note a {
+    color: var(--color-primary);
+    text-decoration: underline;
+}
+
+.c-form__honeypot {
+    position: absolute;
+    left: -9999px;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+}
+
+.c-form__check {
+    display: grid;
+    grid-template-columns: 20px 1fr;
+    gap: var(--sp-3);
+    align-items: start;
+    margin-bottom: var(--sp-5);
+}
+
+.c-form__checkbox {
+    width: 18px;
+    height: 18px;
+    margin-top: 3px;
+    accent-color: var(--color-primary);
+}
+
+@media (max-width: 560px) {
+    .c-form {
+        max-width: none;
+    }
+
+    .c-form.c-card {
+        padding: var(--sp-5);
+    }
+
+    .c-form__group {
+        margin-bottom: var(--sp-4);
+    }
+
+    .c-form__label {
+        font-size: 0.9375rem;
+    }
+
+    .c-form__input {
+        min-height: 54px;
+        padding: 15px 16px;
+        font-size: 1rem;
+        line-height: 1.45;
+    }
+
+    .c-form textarea.c-form__input {
+        min-height: 148px;
+    }
+
+    .c-form__check {
+        grid-template-columns: 24px 1fr;
+        gap: var(--sp-3);
+        margin-bottom: var(--sp-5);
+    }
+
+    .c-form__checkbox {
+        width: 22px;
+        height: 22px;
+        margin-top: 1px;
+    }
+
+    .c-form__check-label {
+        font-size: 0.8125rem;
+        line-height: 1.55;
+    }
+
+    .c-form__check .c-form__error {
+        grid-column: 1 / -1;
+        margin-left: 36px;
+    }
+
+    .c-form__message {
+        text-align: left;
+        line-height: 1.45;
+    }
+}
+
+.c-form__check-label {
+    font-size: var(--text-caption);
+    color: var(--color-ink-secondary);
+    line-height: 1.5;
+}
+
+.c-form__check-label a {
+    color: var(--color-primary);
+    text-decoration: underline;
+}
+
+.c-form__check .c-form__error {
+    grid-column: 2;
+}
+
+.c-form__message {
+    margin-top: var(--sp-4);
+    padding: var(--sp-4);
+    border-radius: var(--radius-sm);
+    font-size: var(--text-small);
+    font-weight: 600;
+    text-align: center;
+    display: none;
+}
+
+.c-form__message.is-success {
+    display: block;
+    background: rgba(15, 157, 88, 0.08);
+    color: var(--color-success);
+}
+
+.c-form__message.is-error {
+    display: block;
+    background: rgba(217, 48, 37, 0.08);
+    color: var(--color-error);
+}
+
+.c-form__message.is-warning {
+    display: block;
+    background: rgba(249, 168, 37, 0.12);
+    color: #7a4b00;
+}
