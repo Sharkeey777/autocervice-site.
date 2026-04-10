@@ -329,8 +329,6 @@
                 <div>
                     <h2 class="s-footer__column-title">Документы</h2>
                     <nav class="s-footer__links" aria-label="Документы">
-                        <a href="oferta.html">Пользовательское соглашение</a>
-                        <a href="privacy.html">Политика конфиденциальности</a>
                         <a href="personal-data.html">Политика обработки персональных данных</a>
                     </nav>
                 </div>
@@ -396,8 +394,15 @@
     </aside>
 
     <div class="s-cookie-notice js-cookie-notice" hidden>
-        <p class="s-cookie-notice__text">Сайт не использует аналитику. Карта Яндекс может применять технические cookie.</p>
-        <button class="c-button c-button--primary c-button--sm js-cookie-accept" type="button">Ок</button>
+        <div class="s-cookie-notice__content">
+            <p class="s-cookie-notice__title">Используем файлы cookie</p>
+            <p class="s-cookie-notice__text">
+                Это нужно, чтобы сайт работал лучше для вас.
+                Оставаясь на сайте, вы соглашаетесь с
+                <a href="assets/docs/cookie-policy.pdf" target="_blank" rel="noreferrer">обработкой файлов cookie</a>.
+            </p>
+        </div>
+        <button class="c-button c-button--secondary c-button--sm js-cookie-accept" type="button">Понятно</button>
     </div>
 
     <script src="scripts/app.js" defer></script>

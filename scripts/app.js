@@ -245,21 +245,58 @@ function initCookieNotice() {
     const acceptButton = notice?.querySelector('.js-cookie-accept');
     if (!notice || !acceptButton) return;
 
+    const storageKey = 'dale-cookie-notice-accepted-v1';
     const showDelay = 5000;
-    let showTimer = window.setTimeout(() => {
+    let showTimer;
+
+    const showNotice = () => {
         notice.hidden = false;
         document.body.classList.add('has-cookie-notice');
         window.requestAnimationFrame(() => {
             notice.classList.add('is-visible');
         });
-    }, showDelay);
+    };
 
-    acceptButton.addEventListener('click', () => {
-        window.clearTimeout(showTimer);
+    const hideNotice = () => {
         notice.classList.remove('is-visible');
         document.body.classList.remove('has-cookie-notice');
         window.setTimeout(() => {
             notice.hidden = true;
         }, 260);
+    };
+
+    const saveAccepted = () => {
+        window.localStorage.setItem(storageKey, 'accepted');
+        window.clearTimeout(showTimer);
+        hideNotice();
+    };
+
+    try {
+        if (window.localStorage.getItem(storageKey) === 'accepted') {
+            notice.hidden = true;
+            document.body.classList.remove('has-cookie-notice');
+            return;
+        }
+    } catch (error) {
+        /* ignore localStorage issues and keep banner functional */
+    }
+
+    showTimer = window.setTimeout(showNotice, showDelay);
+
+    acceptButton.addEventListener('click', () => {
+        try {
+            saveAccepted();
+            return;
+        } catch (error) {
+            window.clearTimeout(showTimer);
+            hideNotice();
+        }
+    });
+
+    document.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape' && !notice.hidden) {
+            window.clearTimeout(showTimer);
+            hideNotice();
+        }
     });
 }
