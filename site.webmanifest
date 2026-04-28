@@ -8,14 +8,14 @@
   "lang": "ru",
   "icons": [
     {
-      "src": "/android-chrome-192x192.png",
-      "sizes": "192x192",
+      "src": "/assets/images/avtoservis-logo.png",
+      "sizes": "2028x1039",
       "type": "image/png",
       "purpose": "any"
     },
     {
-      "src": "/android-chrome-512x512.png",
-      "sizes": "512x512",
+      "src": "/assets/images/avtoservis-logo.png",
+      "sizes": "2028x1039",
       "type": "image/png",
       "purpose": "any"
     }
